@@ -110,4 +110,8 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
         Integer count = jdbcTemplate.queryForObject(sql, new Object[]{exerciseName, dayWorkoutId}, Integer.class);
         return count != null && count > 0;
     }
+
+    // To Do:
+    // Need to be able to add exercise for a given DayWorkout
+    // Need to remove dayworkout from exercises e.g dayWorkouts[]
 }
