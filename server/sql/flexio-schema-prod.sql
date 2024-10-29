@@ -3,7 +3,6 @@ create database flexio;
 use flexio;
 
 -- USER
--- For now weight is in KG 
 
 CREATE TABLE users (
 
@@ -11,7 +10,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     email VARCHAR(250) NOT NULL,
     `password` VARCHAR(200) NOT NULL,
-    weight DOUBLE NOT NULL,
+    weight DOUBLE NOT NULL, -- For now weight is in KG 
     height_ft INT NOT NULL,
     height_in INT NOT NULL
 );
@@ -35,6 +34,7 @@ CREATE TABLE day_workout (
 );
 
 CREATE TABLE day_workout_exercise (
+
 	exercise_id INT,
     day_workout_id INT,
 	PRIMARY KEY (exercise_id, day_workout_id),
@@ -51,6 +51,7 @@ CREATE TABLE weekly_program (
 
 
 CREATE TABLE day_workout_weekly_program (
+
 	day_workout_id INT,
     weekly_program_id INT,
 	PRIMARY KEY (day_workout_id, weekly_program_id),
@@ -65,6 +66,7 @@ CREATE TABLE split (
 );
 
 CREATE TABLE weekly_program_split (
+
 	weekly_program_id INT,
     split_id INT,
 	PRIMARY KEY (weekly_program_id, split_id),
@@ -72,7 +74,34 @@ CREATE TABLE weekly_program_split (
     FOREIGN KEY (split_id) REFERENCES split(split_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- INSERTING MOCK DATA
+-- GOALS
+
+CREATE TABLE weekly_goals (
+
+    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    week_start DATE NOT NULL,
+    week_end DATE NOT NULL,
+    workout_id INT,  -- Reference to the day_workout ID
+    completed BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (workout_id) REFERENCES day_workout(day_workout_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE user_goals (
+
+    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    goal_type ENUM('Weight Loss', 'Build Muscle', 'Get Stronger', 'Maintain Weight') NOT NULL,
+    target_weight DECIMAL(10, 2),  -- Target weight for goals related to weight
+    weekly_visits INT,              -- Number of visits per week
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- ** INSERTING MOCK DATA **
 
 INSERT INTO users (user_id, username, email, `password`, weight, height_ft, height_in)
 VALUES
@@ -197,3 +226,16 @@ VALUES
     (22, 6), -- Lying Leg Curl
     (23, 6), -- Seated Leg Curl
     (24, 6); -- Good Mornings
+
+INSERT INTO weekly_goals (user_id, week_start, week_end, workout_id, completed)
+VALUES
+    (1, '2024-09-09', '2024-09-15', 1, TRUE),  -- Completed "Push - Chest + Shoulders"
+    (1, '2024-09-09', '2024-09-15', 2, FALSE), -- Not completed "Pull - Back"
+    (1, '2024-09-09', '2024-09-15', 3, TRUE),  -- Completed "Legs - Quads"
+    (1, '2024-09-16', '2024-09-22', 4, TRUE),  -- Completed "Push - Triceps"
+    (1, '2024-09-16', '2024-09-22', 5, FALSE), -- Not completed "Pull - Biceps"
+    (1, '2024-09-16', '2024-09-22', 6, TRUE);  -- Completed "Legs - Hamstring"
+    
+INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
+VALUES
+    (1, 'Build Muscle', 65.00, 4, '2024-09-01', '2025-03-01')
