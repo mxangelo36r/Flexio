@@ -158,4 +158,42 @@ VALUES
     (21, 'Romanian Deadlift', 60, 4, 10),
     (22, 'Lying Leg Curl', 35, 3, 12),
     (23, 'Seated Leg Curl', 30, 3, 12),
-    (24, 'Good Mornings', 20, 3, 10)
+    (24, 'Good Mornings', 20, 3, 10);
+    
+INSERT INTO day_workout_exercise (exercise_id, day_workout_id)
+VALUES
+    -- Push - Chest + Shoulders
+    (1, 1), -- Bench Press
+    (2, 1), -- Incline Dumbbell Press
+    (3, 1), -- Shoulder Press
+    (4, 1), -- Lateral Raise
+
+    -- Pull - Back
+    (5, 2), -- Pull-Up
+    (6, 2), -- Barbell Row
+    (7, 2), -- Lat Pulldown
+    (8, 2), -- Face Pull
+
+    -- Legs - Quads
+    (9, 3), -- Squat
+    (10, 3), -- Leg Press
+    (11, 3), -- Lunges
+    (12, 3), -- Leg Extension
+
+    -- Push - Triceps
+    (13, 4), -- Close Grip Bench Press
+    (14, 4), -- Tricep Extension
+    (15, 4), -- Overhead Tricep Extension
+    (16, 4), -- Dips
+
+    -- Pull - Biceps
+    (17, 5), -- Barbell Curl
+    (18, 5), -- Hammer Curl
+    (19, 5), -- Preacher Curl
+    (20, 5), -- Cable Curl
+
+    -- Legs - Hamstring
+    (21, 6), -- Romanian Deadlift
+    (22, 6), -- Lying Leg Curl
+    (23, 6), -- Seated Leg Curl
+    (24, 6); -- Good Mornings
