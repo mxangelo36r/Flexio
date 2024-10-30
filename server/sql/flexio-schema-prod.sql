@@ -91,7 +91,7 @@ CREATE TABLE user_goals (
 
 CREATE TABLE daily_goals (
 
-    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    daily_goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     workout_date DATE NOT NULL,  -- Date for the specific goal
     day_workout_id INT NOT NULL, -- Reference to the day's workout plan
@@ -105,7 +105,7 @@ CREATE TABLE daily_goals (
 
 CREATE TABLE weekly_goals (
 
-    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    weekly_goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     week_start DATE NOT NULL,   -- Start date of the week
     week_end DATE NOT NULL,     -- End date of the week
