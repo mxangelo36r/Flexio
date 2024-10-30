@@ -78,7 +78,7 @@ CREATE TABLE weekly_program_split (
 
 CREATE TABLE weekly_goals (
 
-    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    weekly_goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     week_start DATE NOT NULL,
     week_end DATE NOT NULL,
@@ -90,11 +90,11 @@ CREATE TABLE weekly_goals (
 
 CREATE TABLE user_goals (
 
-    goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     goal_type ENUM('Weight Loss', 'Build Muscle', 'Get Stronger', 'Maintain Weight') NOT NULL,
     target_weight DECIMAL(10, 2),  -- Target weight for goals related to weight
-    weekly_visits INT,              -- Number of visits per week
+    weekly_visits INT,             -- Number of visits per week
     start_date DATE,
     end_date DATE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
