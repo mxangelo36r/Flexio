@@ -76,18 +76,6 @@ CREATE TABLE weekly_program_split (
 
 -- GOALS
 
-CREATE TABLE weekly_goals (
-
-    weekly_goal_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    week_start DATE NOT NULL,
-    week_end DATE NOT NULL,
-    workout_id INT,  -- Reference to the day_workout ID
-    completed BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (workout_id) REFERENCES day_workout(day_workout_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE user_goals (
 
     user_goal_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -99,6 +87,33 @@ CREATE TABLE user_goals (
     end_date DATE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+CREATE TABLE daily_goals (
+
+    daily_goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    workout_date DATE NOT NULL,  -- Date for the specific goal
+    day_workout_id INT NOT NULL, -- Reference to the day's workout plan
+    exercise_id INT NOT NULL,    -- Specific exercise in the workout
+    completed BOOLEAN DEFAULT FALSE,  -- Tracks if the specific exercise was completed
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (day_workout_id) REFERENCES day_workout(day_workout_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE weekly_goals (
+
+    weekly_goal_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    week_start DATE NOT NULL,   -- Start date of the week
+    week_end DATE NOT NULL,     -- End date of the week
+    gym_visits INT DEFAULT 0,   -- Number of gym visits that week
+    all_workouts_completed BOOLEAN DEFAULT FALSE, -- Whether all weekly workouts were completed
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 
 
 -- ** INSERTING MOCK DATA **
@@ -226,16 +241,22 @@ VALUES
     (22, 6), -- Lying Leg Curl
     (23, 6), -- Seated Leg Curl
     (24, 6); -- Good Mornings
-
-INSERT INTO weekly_goals (user_id, week_start, week_end, workout_id, completed)
-VALUES
-    (1, '2024-09-09', '2024-09-15', 1, TRUE),  -- Completed "Push - Chest + Shoulders"
-    (1, '2024-09-09', '2024-09-15', 2, FALSE), -- Not completed "Pull - Back"
-    (1, '2024-09-09', '2024-09-15', 3, TRUE),  -- Completed "Legs - Quads"
-    (1, '2024-09-16', '2024-09-22', 4, TRUE),  -- Completed "Push - Triceps"
-    (1, '2024-09-16', '2024-09-22', 5, FALSE), -- Not completed "Pull - Biceps"
-    (1, '2024-09-16', '2024-09-22', 6, TRUE);  -- Completed "Legs - Hamstring"
     
 INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
 VALUES
-    (1, 'Build Muscle', 65.00, 4, '2024-09-01', '2025-03-01')
+    (1, 'Build Muscle', 65.00, 4, '2024-09-01', '2025-03-01');
+    
+
+INSERT INTO daily_goals (user_id, workout_date, day_workout_id, exercise_id, completed)
+VALUES
+    (1, '2024-09-09', 1, 1, TRUE),
+    (1, '2024-09-09', 1, 2, TRUE),
+    (1, '2024-09-09', 1, 3, TRUE),
+    (1, '2024-09-10', 2, 5, TRUE),   -- Pull-Up
+    (1, '2024-09-10', 2, 6, TRUE),   -- Barbell Row
+    (1, '2024-09-10', 2, 7, TRUE);   -- Lat Pulldown
+
+INSERT INTO weekly_goals (user_id, week_start, week_end, gym_visits, all_workouts_completed)
+VALUES
+    (1, '2024-09-09', '2024-09-15', 4, TRUE),
+    (1, '2024-09-16', '2024-09-22', 5, TRUE);
