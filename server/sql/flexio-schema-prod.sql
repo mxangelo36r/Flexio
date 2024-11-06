@@ -114,8 +114,6 @@ CREATE TABLE weekly_goals (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
-
 -- ** INSERTING MOCK DATA **
 
 INSERT INTO users (user_id, username, email, `password`, weight, height_ft, height_in)
