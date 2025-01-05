@@ -1,4 +1,4 @@
-package org.app.models;
+package org.app.models.workout;
 
 public class WeeklyProgram {
 
