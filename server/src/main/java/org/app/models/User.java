@@ -14,6 +14,11 @@ public class User {
     private int heightIn;
 
     // Constructor
+
+    public User() { // Empty Constructor
+
+    }
+
     public User(int userId, String username, String email, String password, double weight, int heightFt, int heightIn) {
 
         this.userId = userId;
