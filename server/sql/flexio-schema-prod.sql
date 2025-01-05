@@ -90,13 +90,14 @@ CREATE TABLE user_goals (
 
 
 CREATE TABLE daily_goals (
-
-    daily_goal_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    workout_date DATE NOT NULL,  -- Date for the specific goal
-    day_workout_exercise_id INT NOT NULL, -- Reference to the day's workout exercise plan
-    completed BOOLEAN DEFAULT FALSE,  -- Tracks if the specific exercise was completed
-    FOREIGN KEY (day_workout_exercise_id) REFERENCES day_workout_exercise(day_workout_exercise_id) ON DELETE CASCADE ON UPDATE CASCADE
+    daily_goal_id INT AUTO_INCREMENT PRIMARY KEY, -- Unique identifier for each daily goal
+    user_id INT,                                  -- ID of the user
+    day_workout_id INT,                           -- ID of the day workout
+    exercise_id INT,                              -- ID of the exercise
+    workout_date DATE,                            -- Date of the workout
+    completed BOOLEAN,                            -- Status of goal completion
+    UNIQUE KEY unique_user_exercise (user_id, exercise_id), -- Ensures a user has only one entry per exercise
+    FOREIGN KEY (exercise_id, day_workout_id) REFERENCES day_workout_exercise(exercise_id, day_workout_id)
 );
 
 
