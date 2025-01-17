@@ -1,7 +1,6 @@
 package org.app.models.goals;
 
-import org.app.models.User;
-import org.app.models.goals.GoalType;
+import org.app.models.user.User;
 
 import java.time.LocalDate;
 
