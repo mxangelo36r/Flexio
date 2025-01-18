@@ -30,28 +30,91 @@ class UserJdbcTemplateRepositoryTest {
         jdbcTemplate.update("call set_known_good_state();");
     }
 
+//    @Test
+//    void shouldFindAllUsers() {
+//
+//        List<User> users = repository.findAllUsers();
+//
+//        assertNotNull(users);
+//        assertEquals(1, users.size());
+//    }
+
     @Test
-    void findAllUsers() {
+    void shouldFindById() {
 
-        List<User> users = repository.findAllUsers();
-
-        assertNotNull(users);
-        assertEquals(1, users.size());
+        User user = repository.findById(1);
+        assertNotNull(user);
+        assertEquals("testUsername", user.getUsername());
+        assertEquals("testEmail@gmail.com", user.getEmail());
+        assertEquals("testPassword", user.getPassword());
+        assertEquals(50, user.getWeight());
+        assertEquals(6, user.getHeightFt());
+        assertEquals(4, user.getHeightIn());
     }
 
     @Test
-    void findById() {
+    void shouldNotFindNullUser() {
+
+        User user = repository.findById(3245);
+        assertNull(user);
     }
 
     @Test
     void addUser() {
+
+        User user = new User();
+        user.setUsername("anotherUsername");
+        user.setEmail("anotherEmail@gmail.com");
+        user.setPassword("anotherPassword");
+        user.setWeight(100);
+        user.setHeightFt(7);
+        user.setHeightIn(1);
+
+        User addedUser = repository.addUser(user);
+        assertNotNull(addedUser);
+        assertEquals(2, addedUser.getUserId());
     }
 
     @Test
     void updateUser() {
+
+        User user = new User();
+        user.setUserId(1);
+        user.setUsername("anotherUsername");
+        user.setEmail("anotherEmail@gmail.com");
+        user.setPassword("anotherPassword");
+        user.setWeight(100);
+        user.setHeightFt(7);
+        user.setHeightIn(1);
+
+        assertTrue(repository.updateUser(user));
+        assertEquals("anotherUsername", repository.findById(1).getUsername());
     }
 
     @Test
-    void deleteUser() {
+    void shouldNotUpdateUser() {
+
+        User updatedUser = new User();
+        updatedUser.setUserId(123);
+        updatedUser.setUsername("lskdjf");
+        updatedUser.setEmail("akqkq");
+        updatedUser.setPassword("109278ohjksand");
+        updatedUser.setWeight(1);
+        updatedUser.setHeightFt(70);
+        updatedUser.setHeightIn(13);
+
+        assertFalse(repository.updateUser(updatedUser));
+    }
+
+    @Test
+    void shouldDeleteUser() {
+
+        assertTrue(repository.deleteUser(1));
+    }
+
+    @Test
+    void shouldNotDeleteUser() {
+
+        assertFalse(repository.deleteUser(1000));
     }
 }
