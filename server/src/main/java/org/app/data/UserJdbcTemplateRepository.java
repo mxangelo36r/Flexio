@@ -71,11 +71,25 @@ public class UserJdbcTemplateRepository implements UserRepository {
 
     @Override
     public boolean updateUser(User user) {
-        return false;
+
+        final String sql = "UPDATE users SET " +
+                "username = ?, " +
+                "email = ?, " +
+                "`password` = ?, " +
+                "weight = ?, " +
+                "height_ft = ?, " +
+                "height_in = ?;";
+
+        int rowsUpdated = jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(),
+                user.getWeight(), user.getHeightFt(), user.getHeightIn());
+
+        return rowsUpdated > 0;
     }
 
     @Override
-    public boolean deleteUser(User user) {
-        return false;
+    public boolean deleteUser(int id) {
+
+        final String sql = "DELETE FROM users WHERE user_id = ?;";
+        return jdbcTemplate.update(sql, id) > 0;
     }
 }
