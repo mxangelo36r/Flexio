@@ -42,6 +42,25 @@ public class UserService {
         }
 
         if (user.getUserId() <= 0) {
+            result.addMessage("User ID must be set for `add` operation", ResultType.INVALID);
+            return result;
+        }
+
+        user = repository.addUser(user);
+        result.setPayload(user);
+
+        return result;
+    }
+
+    public Result<User> updateUser(User user) {
+
+        Result<User> result = validate(user);
+
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+        if (user.getUserId() <= 0) {
             result.addMessage("User ID must be set for `update` operation", ResultType.INVALID);
             return result;
         }
@@ -52,10 +71,6 @@ public class UserService {
         }
 
         return result;
-    }
-
-    public Result<User> updateUser(User user) {
-
     }
 
     // Validations
