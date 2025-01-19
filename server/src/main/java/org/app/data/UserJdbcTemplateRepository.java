@@ -79,10 +79,17 @@ public class UserJdbcTemplateRepository implements UserRepository {
                 "`password` = ?, " +
                 "weight = ?, " +
                 "height_ft = ?, " +
-                "height_in = ?;";
+                "height_in = ? " +
+                "WHERE user_id = ?";
 
-        int rowsUpdated = jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(),
-                user.getWeight(), user.getHeightFt(), user.getHeightIn());
+        int rowsUpdated = jdbcTemplate.update(sql,
+                user.getUsername(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getWeight(),
+                user.getHeightFt(),
+                user.getHeightIn(),
+                user.getUserId() > 0);
 
         return rowsUpdated > 0;
     }
