@@ -36,12 +36,35 @@ class UserServiceTest {
         assertEquals(userOut, result.getPayload());
     }
 
-    
+    @Test
+    void shouldNotAddEmptyUsername() {
+        User userIn = makeUser();
+        userIn.setUsername(" ");
+        Result<User> result = service.addUser(userIn);
+        assertEquals(ResultType.INVALID, result.getType());
+        assertNull(result.getPayload());
+    }
+
+    @Test
+    void shouldUpdateUser() {
+        User userIn = makeUser();
+        when(repository.updateUser(userIn)).thenReturn(true);
+        Result<User> result = service.updateUser(userIn);
+        assertEquals(ResultType.SUCCESS, result.getType());
+    }
+
+    @Test
+    void shouldNotUpdateNegativeWeight() {
+        User userIn = makeUser();
+        userIn.setWeight(-4);
+        when(repository.updateUser(userIn)).thenReturn(false);
+        Result<User> result = service.updateUser(userIn);
+        assertEquals(ResultType.INVALID, result.getType());
+    }
 
     // Helper Methods
     User makeUser() {
         return new User(1, "mockUsername", "mockEmail@gmail.org", "mockPassword",
                 50, 5, 4);
     }
-
 }

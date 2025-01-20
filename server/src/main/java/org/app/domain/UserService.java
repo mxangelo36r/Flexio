@@ -85,7 +85,7 @@ public class UserService {
             return result;
         }
 
-        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+        if (user.getUsername() == null || user.getUsername().isEmpty() || user.getUsername().isBlank()) {
             result.addMessage("Username cannot be empty", ResultType.INVALID);
             return result;
         }
