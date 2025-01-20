@@ -1,6 +1,7 @@
 package org.app.domain;
 
 import org.app.data.UserJdbcTemplateRepository;
+import org.app.data.UserRepository;
 import org.app.domain.result.Result;
 import org.app.domain.result.ResultType;
 import org.app.models.user.User;
@@ -13,9 +14,9 @@ import java.util.regex.Pattern;
 @Service
 public class UserService {
 
-    private final UserJdbcTemplateRepository repository;
+    private final UserRepository repository;
 
-    public UserService(UserJdbcTemplateRepository repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -46,8 +47,8 @@ public class UserService {
             return result;
         }
 
-        user = repository.addUser(user);
-        result.setPayload(user);
+        User u = repository.addUser(user);
+        result.setPayload(u);
 
         return result;
     }
