@@ -14,30 +14,45 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 class UserJdbcTemplateRepositoryTest {
 
+    @Autowired
     UserJdbcTemplateRepository repository;
 
-    public UserJdbcTemplateRepositoryTest() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(DbTestConfig.class);
-        repository = context.getBean(UserJdbcTemplateRepository.class);
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    static boolean hasSetUp = false;
+
+    @BeforeEach
+    void setup() {
+        if (!hasSetUp) {
+            hasSetUp = true;
+            jdbcTemplate.update("call set_known_good_state();");
+        }
     }
 
-    @BeforeAll
-    static void oneTimeSetup() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(DbTestConfig.class);
-        JdbcTemplate jdbcTemplate = context.getBean(JdbcTemplate.class);
-        jdbcTemplate.update("call set_known_good_state();");
-    }
-
-//    @Test
-//    void shouldFindAllUsers() {
-//
-//        List<User> users = repository.findAllUsers();
-//
-//        assertNotNull(users);
-//        assertEquals(1, users.size());
+//    public UserJdbcTemplateRepositoryTest() {
+//        ApplicationContext context = new AnnotationConfigApplicationContext(DbTestConfig.class);
+//        repository = context.getBean(UserJdbcTemplateRepository.class);
 //    }
+//
+//    @BeforeAll
+//    static void oneTimeSetup() {
+//        ApplicationContext context = new AnnotationConfigApplicationContext(DbTestConfig.class);
+//        JdbcTemplate jdbcTemplate = context.getBean(JdbcTemplate.class);
+//        jdbcTemplate.update("call set_known_good_state();");
+//    }
+
+    @Test
+    void shouldFindAllUsers() {
+
+        List<User> users = repository.findAllUsers();
+
+        assertNotNull(users);
+        assertEquals(2, users.size());
+    }
 
     @Test
     void shouldFindById() {
