@@ -41,11 +41,6 @@ public class UserService {
             return result;
         }
 
-        if (user.getUserId() <= 0) {
-            result.addMessage("User ID must be set for `add` operation", ResultType.INVALID);
-            return result;
-        }
-
         User u = repository.addUser(user);
         result.setPayload(u);
 
@@ -60,10 +55,10 @@ public class UserService {
             return result;
         }
 
-        if (user.getUserId() <= 0) {
-            result.addMessage("User ID must be set for `update` operation", ResultType.INVALID);
-            return result;
-        }
+//        if (user.getUserId() <= 0) {
+//            result.addMessage("User ID must be set for `update` operation", ResultType.INVALID);
+//            return result;
+//        }
 
         if (!repository.updateUser(user)) {
             String msg = String.format("User ID (%s) cannot be found", user.getUserId());
