@@ -48,6 +48,23 @@ public class UserGoalJdbcTemplateRepository implements UserGoalRepository {
 
     @Override
     public boolean updateUserGoal(UserGoal userGoal) {
-        return false;
+
+        final String sql = "UPDATE users SET " +
+                "goal_type = ?, " +
+                "target_weight = ?, " +
+                "weekly_visits = ?, " +
+                "start_date = ?, " +
+                "end_date = ?, " +
+                "WHERE user_id = ?";
+
+        int rowsUpdated = jdbcTemplate.update(sql,
+                userGoal.getGoalType(),
+                userGoal.getTarget_weight(),
+                userGoal.getWeekly_visits(),
+                userGoal.getStart_date(),
+                userGoal.getEnd_date(),
+                userGoal.getUser_id() > 0);
+
+        return rowsUpdated > 0;
     }
 }
