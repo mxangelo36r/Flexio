@@ -1,17 +1,16 @@
 package learn.app.models.goals;
 
-import learn.app.models.user.User;
-
-import java.time.LocalDate;
+import java.util.Date;
 
 public class UserGoal {
 
     private int user_goal_id;
-    private User user;
+    private int user_id;
     private GoalType goalType;
     private double target_weight;
-    private LocalDate start_date;
-    private LocalDate end_date;
+    private int weekly_visits;
+    private Date start_date;
+    private Date end_date;
 
     // Constructors
 
@@ -19,11 +18,12 @@ public class UserGoal {
 
     }
 
-    public UserGoal(int user_goal_id, User user, GoalType goalType, double target_weight, LocalDate start_date, LocalDate end_date) {
+    public UserGoal(int user_goal_id, int user_id, GoalType goalType, double target_weight, int weekly_visits, Date start_date, Date end_date) {
         this.user_goal_id = user_goal_id;
-        this.user = user;
+        this.user_id = user_id;
         this.goalType = goalType;
         this.target_weight = target_weight;
+        this.weekly_visits = weekly_visits;
         this.start_date = start_date;
         this.end_date = end_date;
     }
@@ -38,12 +38,12 @@ public class UserGoal {
         this.user_goal_id = user_goal_id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public GoalType getGoalType() {
@@ -62,19 +62,27 @@ public class UserGoal {
         this.target_weight = target_weight;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public int getWeekly_visits() {
+        return weekly_visits;
     }
 
-    public void setStart_date(LocalDate start_date) {
+    public void setWeekly_visits(int weekly_visits) {
+        this.weekly_visits = weekly_visits;
+    }
+
+    public java.sql.Date getStart_date() {
+        return (java.sql.Date) start_date;
+    }
+
+    public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public LocalDate getEnd_date() {
+    public java.sql.Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(LocalDate end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 }
