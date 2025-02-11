@@ -1,0 +1,44 @@
+@url = http://localhost:8080/flexio/users 
+
+### GET: Find all users 
+
+GET {{url}} HTTP/1.1
+
+### GET: Find user by ID
+
+GET {{url}}/2 HTTP/1.1
+
+### POST: Add a user
+
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "MxNova",
+    "email": "angelomrosales@gmail.com",
+    "password": "top-secret-password123",
+    "weight": 74,
+    "heightFt": 5,
+    "heightIn": 10
+}
+
+###
+
+PUT {{url}}/update/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "username": "updatedUser123",
+    "email": "updatedEmail@gmail.com",
+    "password": "updated-password-123",
+    "weight": 50,
+    "heightFt": 4,
+    "heightIn": 10
+}
+
+###
+
+DELETE {{url}}/delete/1 HTTP/1.1
+
+###
