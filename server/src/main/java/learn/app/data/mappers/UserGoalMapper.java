@@ -18,7 +18,7 @@ public class UserGoalMapper implements RowMapper<UserGoal> {
         userGoal.setUser_id(resultSet.getInt("user_id"));
         userGoal.setGoalType(GoalType.valueOf(resultSet.getString("goal_type")));
         userGoal.setTarget_weight(resultSet.getDouble("target_weight"));
-        userGoal.setWeekly_visits(resultSet.getInt("weekly_vists"));
+        userGoal.setWeekly_visits(resultSet.getInt("weekly_visits"));
         userGoal.setStart_date(resultSet.getDate("start_date"));
         userGoal.setEnd_date(resultSet.getDate("end_date"));
 
