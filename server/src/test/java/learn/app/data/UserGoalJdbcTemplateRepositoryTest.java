@@ -72,6 +72,6 @@ class UserGoalJdbcTemplateRepositoryTest {
 
         assertTrue(repository.updateUserGoal(userGoal));
         assertEquals(java.sql.Date.valueOf(LocalDate.of(2025, 3, 1)), repository.findUserGoal(1).getStart_date());
-    }l
+    }
 }
 
