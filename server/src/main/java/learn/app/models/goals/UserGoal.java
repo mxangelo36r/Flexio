@@ -1,6 +1,6 @@
 package learn.app.models.goals;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserGoal {
 
