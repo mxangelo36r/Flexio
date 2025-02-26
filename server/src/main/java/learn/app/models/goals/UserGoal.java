@@ -1,6 +1,6 @@
 package learn.app.models.goals;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import java.sql.Date;
 
 public class UserGoal {
@@ -11,10 +11,10 @@ public class UserGoal {
     @NotNull(message = "Goal Type cannot be null")
     private GoalType goalType;
     @NotNull(message = "Target Weight cannot be null")
-    @NotBlank
     @Positive
     private double target_weight;
     @NotNull(message = "Weekly Visits cannot be null")
+    @Positive
     private int weekly_visits;
     @Future
     @NotNull(message = "Start Date cannot be null")
