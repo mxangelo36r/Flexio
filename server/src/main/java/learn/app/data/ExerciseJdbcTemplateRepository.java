@@ -43,7 +43,26 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
 
     @Override
     public Exercise addExercise(Exercise exercise) {
-        return null;
+        final String sql = "INSERT INTO exercise (exercise_id, name_exercise, weight, sets, reps) " +
+                "VALUES (?, ?, ?, ?, ?);";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        int rowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, exercise.getExerciseName());
+            ps.setDouble(2, exercise.getWeight());
+            ps.setInt(3, exercise.getSets());
+            ps.setInt(4, exercise.getReps());
+            return ps;
+        }, keyHolder);
+
+        if (rowsAffected <= 0) {
+            return null;
+        }
+
+        exercise.setExerciseId(keyHolder.getKey().intValue());
+        return exercise;
     }
 
     @Override
