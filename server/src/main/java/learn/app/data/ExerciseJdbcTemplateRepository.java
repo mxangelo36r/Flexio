@@ -67,11 +67,26 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
 
     @Override
     public boolean updateExercise(Exercise exercise) {
-        return false;
+        final String sql = "UPDATE exercise SET " +
+                "name_exercise = ?, " +
+                "weight = ?, " +
+                "sets = ?, " +
+                "reps = ?, " +
+                "WHERE exercise_id = ?;";
+
+        int rowsUpdated = jdbcTemplate.update(sql,
+                exercise.getExerciseName(),
+                exercise.getWeight(),
+                exercise.getSets(),
+                exercise.getReps(),
+                exercise.getExerciseId() > 0);
+
+        return rowsUpdated > 0;
     }
 
     @Override
     public boolean deleteExercise(int id) {
-        return false;
+        final String sql = "DELETE FROM exercise WHERE exercise_id = ?;";
+        return jdbcTemplate.update(sql, id) > 0;
     }
 }
