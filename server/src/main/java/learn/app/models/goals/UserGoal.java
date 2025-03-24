@@ -1,15 +1,26 @@
 package learn.app.models.goals;
 
+import jakarta.validation.constraints.*;
 import java.sql.Date;
 
 public class UserGoal {
 
     private int user_goal_id;
+    @NotNull(message = "User ID cannot be null")
     private int user_id;
+    @NotNull(message = "Goal Type cannot be null")
     private GoalType goalType;
+    @NotNull(message = "Target Weight cannot be null")
+    @Positive
     private double target_weight;
+    @NotNull(message = "Weekly Visits cannot be null")
+    @Positive
     private int weekly_visits;
+    @Future
+    @NotNull(message = "Start Date cannot be null")
     private Date start_date;
+    @Future
+    @NotNull(message = "End Date cannot be null")
     private Date end_date;
 
     // Constructors
