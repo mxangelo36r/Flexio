@@ -30,7 +30,15 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
 
     @Override
     public Exercise findExerciseById(int id) {
-        return null;
+        final String sql = "SELECT exercise_id, name_exercise, weight, sets, reps " +
+                "FROM exercise " +
+                "WHERE exercise_id = ?;";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new ExerciseMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
     }
 
     @Override
