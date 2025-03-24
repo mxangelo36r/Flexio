@@ -15,9 +15,17 @@ import java.util.List;
 
 @Repository
 public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public ExerciseJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     @Override
     public List<Exercise> findAllExercises() {
-        return null;
+        final String sql = "SELECT exercise_id, name_exercise, weight, sets, reps FROM exercise;";
+        return jdbcTemplate.query(sql, new ExerciseMapper());
     }
 
     @Override
