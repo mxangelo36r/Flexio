@@ -11,6 +11,10 @@ public class Exercise {
     private int sets;
     private int reps;
 
+    public Exercise() {
+        
+    }
+
     public Exercise (int exerciseId, String exerciseName, double weight, int sets, int reps) {
 
         this.exerciseId = exerciseId;

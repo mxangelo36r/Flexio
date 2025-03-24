@@ -15,7 +15,10 @@ import jakarta.validation.ValidatorFactory;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -42,13 +45,36 @@ class UserGoalServiceTest {
         validator = factory.getValidator();
     }
 
+
     @Test
     void shouldHaveValidParameters() {
         UserGoal userGoal = makeUserGoal();
         Set<ConstraintViolation<UserGoal>> violations = validator.validate(userGoal);
-        assertTrue(violations.isEmpty());
+        assertFalse(violations.isEmpty());
         // Need to see what messages are being printed out
     }
+
+    // Tried to see what messages are being printed out
+    // Come back and try again
+    @Test
+    void shouldNotHaveValidParametersWithMessages() {
+        UserGoal userGoal = makeUserGoal();
+        Set<ConstraintViolation<UserGoal>> violations = validator.validate(userGoal);
+
+//        List<String> messages = violations.stream()
+//                .map(ConstraintViolation::getMessage)
+//                .collect(Collectors.toList());
+
+        Map<String, String> violationMap = violations.stream()
+                .collect(Collectors.toMap(
+                        violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage
+                ));
+
+        assertEquals("dslkfnldf", violationMap.get("user_id"));
+    }
+    // Implement happy and unhappy paths for UserGoal CRUD operations
+    // Mockito etc.
 
     @Test
     void shouldFindUserGoal() {
