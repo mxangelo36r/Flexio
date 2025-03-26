@@ -43,8 +43,8 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
 
     @Override
     public Exercise addExercise(Exercise exercise) {
-        final String sql = "INSERT INTO exercise (exercise_id, name_exercise, weight, sets, reps) " +
-                "VALUES (?, ?, ?, ?, ?);";
+        final String sql = "INSERT INTO exercise (name_exercise, weight, sets, reps) " +
+                "VALUES (?, ?, ?, ?);";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -71,7 +71,7 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
                 "name_exercise = ?, " +
                 "weight = ?, " +
                 "sets = ?, " +
-                "reps = ?, " +
+                "reps = ? " +
                 "WHERE exercise_id = ?;";
 
         int rowsUpdated = jdbcTemplate.update(sql,
