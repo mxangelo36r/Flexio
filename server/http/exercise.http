@@ -7,3 +7,62 @@ GET {{url}} HTTP/1.1
 ### GET: Find exercise by ID
 
 GET {{url}}/2 HTTP/1.1
+
+### POST: Add valid exercise
+
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseName": "Sit Ups",
+    "weight": 70,
+    "sets": 2,
+    "reps": 20
+}
+
+### POST: Add invalid exercise name
+
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseName": "",
+    "weight": 70,
+    "sets": 2,
+    "reps": 20
+}
+
+### POST: Add invalid weight
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseName": "Sit Ups",
+    "weight": -15,
+    "sets": 2,
+    "reps": 20
+}
+
+### POST: Add invalid sets
+
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseName": "Sit Ups",
+    "weight": 70,
+    "sets": -1,
+    "reps": 20
+}
+
+### POST: Add invalid reps
+
+POST {{url}}/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseName": "Sit Ups",
+    "weight": 70,
+    "sets": 2,
+    "reps": -3
+}
