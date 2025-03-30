@@ -1,10 +1,13 @@
 package learn.app.models.workout;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 import java.util.Objects;
 
 public class Exercise {
+
+    @Valid
 
     private int exerciseId;
     @NotNull (message = "Exercise name cannot be empty")
