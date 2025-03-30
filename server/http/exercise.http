@@ -1,0 +1,9 @@
+@url = http://localhost:8080/flexio/exercise
+
+### GET: Find all exercises
+
+GET {{url}} HTTP/1.1
+
+### GET: Find exercise by ID
+
+GET {{url}}/2 HTTP/1.1
