@@ -1,6 +1,7 @@
 package learn.app.domain;
 
 import learn.app.data.ExerciseRepository;
+import learn.app.models.workout.Exercise;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,5 +36,10 @@ class ExerciseServiceTest {
 
     @Test
     void deleteExercise() {
+    }
+
+    // Helper Methods
+    Exercise makeExercise() {
+        return new Exercise(1, "mockExercise", 100, 10 , 3);
     }
 }
