@@ -1,14 +1,26 @@
 package learn.app.models.workout;
 
+import javax.validation.constraints.*;
 
 import java.util.Objects;
 
 public class Exercise {
 
     private int exerciseId;
+    @NotNull (message = "Exercise name cannot be empty")
+    @NotBlank (message = "Exercise name cannot be empty")
     private String exerciseName;
+    @NotNull (message = "Weight cannot be empty")
+    @NotBlank (message = "Weight cannot be empty")
+    @Min(value = 1, message = "Weight has to be greater than 0")
     private double weight;
+    @NotNull (message = "Set cannot be empty")
+    @NotBlank (message = "Set cannot be empty")
+    @Min(value = 1, message = "Set has to be greater than 0")
     private int sets;
+    @NotNull (message = "Reps cannot be empty")
+    @NotBlank (message = "Reps cannot be empty")
+    @Min(value = 1, message = "Reps has to be greater than 0")
     private int reps;
 
     public Exercise() {
