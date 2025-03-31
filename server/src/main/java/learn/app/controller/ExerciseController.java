@@ -57,6 +57,14 @@ public class ExerciseController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/delete/{exerciseId}")
+    public ResponseEntity<Void> deleteExercise(@PathVariable int exerciseId) {
+        if (service.deleteExercise(exerciseId)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     // Printing out validations
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

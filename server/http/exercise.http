@@ -67,7 +67,7 @@ Content-Type: application/json
     "reps": -3
 }
 
-### PUT: Updaet valid exercise
+### PUT: Update invalid exercise
 
 ###
 
@@ -75,10 +75,39 @@ PUT {{url}}/update/1 HTTP/1.1
 Content-Type: application/json
 
 {
+    "exerciseId": 1,
     "exerciseName": "Sit Ups",
     "weight": 70,
     "sets": 2,
     "reps": 20
 }
 
-###
+### PUT: Update invalid exercise name
+
+PUT {{url}}/update/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseId": 1,
+    "exerciseName": "",
+    "weight": 70,
+    "sets": 2,
+    "reps": 20
+}
+
+### PUT: Update invalid exercise name
+
+PUT {{url}}/update/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "exerciseId": 1,
+    "exerciseName": "Sit Ups",
+    "weight": -100,
+    "sets": 2,
+    "reps": 20
+}
+
+### DELETE
+
+DELETE {{url}}/delete/2 HTTP/1.1
