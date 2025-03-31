@@ -2,6 +2,8 @@ package learn.app.controller;
 
 import learn.app.domain.ExerciseService;
 import learn.app.domain.result.Result;
+import learn.app.domain.result.ResultType;
+import learn.app.models.user.User;
 import learn.app.models.workout.Exercise;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +45,16 @@ public class ExerciseController {
     public ResponseEntity<Object> addExercise(@Valid @RequestBody Exercise exercise) {
         Exercise result = service.addExercise(exercise);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
+
+    @PutMapping("/update/{exerciseId}")
+    public ResponseEntity<Void> updateExcercise(@PathVariable int exerciseId, @Valid @RequestBody Exercise exercise) {
+        if (exerciseId != exercise.getExerciseId()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        boolean result = service.updateExercise(exercise);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     // Printing out validations
