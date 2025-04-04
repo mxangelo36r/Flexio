@@ -36,4 +36,7 @@ public class ExerciseService {
     public boolean deleteExercise(int id) {
         return repository.deleteExercise(id);
     }
+
+    // Might need to add custom validations:
+    // - Can't have duplicate exercise names on the same day
 }
