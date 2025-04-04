@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -95,5 +96,18 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
         String deleteExerciseSql = "DELETE FROM exercise WHERE exercise_id = ?;";
 
         return jdbcTemplate.update(deleteExerciseSql, id) > 0;
+    }
+
+    // Helper validation methods
+
+    @Override
+    public boolean existsByNameAndDay(String exerciseName, int dayWorkoutId) {
+        final String sql = "SELECT * FROM day_workout_exercise dwe " +
+                "JOIN exercise e " +
+                "ON dwe.exercise_id = e.exercise_id " +
+                "WHERE e.name_exercise = ? AND dwe.day_workout_id = ?;";
+
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{exerciseName, dayWorkoutId}, Integer.class);
+        return count != null && count > 0;
     }
 }

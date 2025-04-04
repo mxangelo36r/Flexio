@@ -1,5 +1,7 @@
 package learn.app.models.workout;
 
+import learn.app.validations.UniqueExerciseName;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotBlank;
@@ -7,6 +9,7 @@ import javax.validation.constraints.Min;
 
 import java.util.Objects;
 
+@UniqueExerciseName
 public class Exercise {
 
     private int exerciseId;
@@ -22,6 +25,7 @@ public class Exercise {
 
     @Min(value = 1, message = "Reps has to be greater than 0")
     private int reps;
+    private DayWorkout dayWorkout;
 
     public Exercise() {
         
@@ -75,6 +79,14 @@ public class Exercise {
 
     public void setReps(int reps) {
         this.reps = reps;
+    }
+
+    public DayWorkout getDayWorkout() {
+        return dayWorkout;
+    }
+
+    public void setDayWorkout(DayWorkout dayWorkout) {
+        this.dayWorkout = dayWorkout;
     }
 
     // Equals & Hashcode
