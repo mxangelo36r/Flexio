@@ -12,8 +12,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @UniqueExerciseName
+@Entity
 public class Exercise {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int exerciseId;
     @NotNull (message = "Exercise name cannot be empty")
     @NotBlank (message = "Exercise name cannot be empty")
