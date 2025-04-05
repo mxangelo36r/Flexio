@@ -33,7 +33,7 @@ public class Exercise {
     @Min(value = 1, message = "Reps has to be greater than 0")
     private int reps;
 
-    @ManyToMany(mappedBy = "exercise")
+    @ManyToMany(mappedBy = "exercises")
     private Set<DayWorkout> dayWorkouts = new HashSet<>();
 
     public Exercise() {
