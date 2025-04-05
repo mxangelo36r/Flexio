@@ -9,7 +9,9 @@ import javax.validation.constraints.Min;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @UniqueExerciseName
 @Entity
@@ -30,7 +32,9 @@ public class Exercise {
 
     @Min(value = 1, message = "Reps has to be greater than 0")
     private int reps;
-    private DayWorkout dayWorkout;
+
+    @ManyToMany(mappedBy = "exercise")
+    private Set<DayWorkout> dayWorkout = new HashSet<>();
 
     public Exercise() {
         
@@ -84,14 +88,6 @@ public class Exercise {
 
     public void setReps(int reps) {
         this.reps = reps;
-    }
-
-    public DayWorkout getDayWorkout() {
-        return dayWorkout;
-    }
-
-    public void setDayWorkout(DayWorkout dayWorkout) {
-        this.dayWorkout = dayWorkout;
     }
 
     // Equals & Hashcode
