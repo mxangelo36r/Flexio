@@ -68,4 +68,14 @@ public class DayWorkout {
     public void setWorkoutName(String workoutName) {
         this.workoutName = workoutName;
     }
+
+    // Exercises
+
+    public Set<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(Set<Exercise> exercises) {
+        this.exercises = exercises;
+    }
 }

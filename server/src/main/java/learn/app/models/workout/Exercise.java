@@ -34,7 +34,7 @@ public class Exercise {
     private int reps;
 
     @ManyToMany(mappedBy = "exercise")
-    private Set<DayWorkout> dayWorkout = new HashSet<>();
+    private Set<DayWorkout> dayWorkouts = new HashSet<>();
 
     public Exercise() {
         
@@ -88,6 +88,16 @@ public class Exercise {
 
     public void setReps(int reps) {
         this.reps = reps;
+    }
+
+    // Day Workouts
+
+    public Set<DayWorkout> getDayWorkouts() {
+        return dayWorkouts;
+    }
+
+    public void setDayWorkouts(Set<DayWorkout> dayWorkouts) {
+        this.dayWorkouts = dayWorkouts;
     }
 
     // Equals & Hashcode
