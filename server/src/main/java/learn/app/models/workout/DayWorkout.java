@@ -1,12 +1,18 @@
 package learn.app.models.workout;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
 public class DayWorkout {
 
     // Fields
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dayWorkoutId;
     @NotNull (message = "Date cannot be empty")
     @NotBlank (message = "Date cannot be empty")
@@ -14,6 +20,15 @@ public class DayWorkout {
     @NotNull (message = "Workout name cannot be empty")
     @NotBlank (message = "Workout name cannot be empty")
     private String workoutName;
+
+    // Join Table
+    @ManyToMany
+    @JoinTable(
+            name = "day_workout_exercise",
+            joinColumns = @JoinColumn(name = "day_workout_id"),
+            inverseJoinColumns = @JoinColumn(name = "exercise_id")
+    )
+    private Set<Exercise> exercises = new HashSet<>();
 
     // Empty Constructor
     public DayWorkout() {
