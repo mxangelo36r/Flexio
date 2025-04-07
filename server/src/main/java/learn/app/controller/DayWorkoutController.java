@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("flexio/exercise")
+@RequestMapping("flexio/dayworkout")
 public class DayWorkoutController {
 
     private final DayWorkoutService service;
