@@ -75,7 +75,8 @@ public class DayWorkoutJdbcTemplateRepository implements DayWorkoutRepository {
     }
 
     @Override
-    public boolean deleteWorkout(DayWorkout dayWorkout) {
-        return false;
+    public boolean deleteWorkout(int id) {
+        final String sql = "DELETE FROM day_workout WHERE day_workout_id = ?";
+        return jdbcTemplate.update(sql, id) > 0;
     }
 }

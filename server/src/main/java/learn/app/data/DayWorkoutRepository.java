@@ -10,5 +10,5 @@ public interface DayWorkoutRepository {
     DayWorkout findWorkoutById(int id);
     DayWorkout addWorkout(DayWorkout dayWorkout);
     boolean updateWorkout(DayWorkout dayWorkout);
-    boolean deleteWorkout(DayWorkout dayWorkout);
+    boolean deleteWorkout(int id);
 }
