@@ -1,6 +1,5 @@
 package learn.app.models.workout;
 
-//import learn.app.validations.UniqueExerciseName;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,7 +12,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-//@UniqueExerciseName
 @Entity
 public class Exercise {
 
@@ -37,7 +35,7 @@ public class Exercise {
     private Set<DayWorkout> dayWorkouts = new HashSet<>();
 
     public Exercise() {
-        
+
     }
 
     public Exercise (int exerciseId, String exerciseName, double weight, int sets, int reps) {

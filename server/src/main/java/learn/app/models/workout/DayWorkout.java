@@ -1,13 +1,17 @@
 package learn.app.models.workout;
 
+import learn.app.validations.UniqueExerciseName;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@UniqueExerciseName
 public class DayWorkout {
 
     // Fields
@@ -16,6 +20,7 @@ public class DayWorkout {
     private int dayWorkoutId;
     @NotNull (message = "Date cannot be empty")
     @NotBlank (message = "Date cannot be empty")
+    @Past (message = "Date cannot be in the past")
     private LocalDate date;
     @NotNull (message = "Workout name cannot be empty")
     @NotBlank (message = "Workout name cannot be empty")
