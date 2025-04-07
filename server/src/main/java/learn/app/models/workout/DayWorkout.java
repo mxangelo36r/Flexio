@@ -20,7 +20,6 @@ public class DayWorkout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dayWorkoutId;
     @NotNull (message = "Date cannot be empty")
-    @Past(message = "Date cannot be in the past")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull (message = "Workout name cannot be empty")
