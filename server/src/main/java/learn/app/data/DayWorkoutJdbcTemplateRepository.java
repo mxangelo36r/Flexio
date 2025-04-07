@@ -48,8 +48,8 @@ public class DayWorkoutJdbcTemplateRepository implements DayWorkoutRepository {
 
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, dayWorkout.getWorkoutName());
-            ps.setDate(2, java.sql.Date.valueOf(dayWorkout.getDate()));
+            ps.setDate(1, java.sql.Date.valueOf(dayWorkout.getDate()));
+            ps.setString(2, dayWorkout.getWorkoutName());
             return ps;
         }, keyHolder);
 
