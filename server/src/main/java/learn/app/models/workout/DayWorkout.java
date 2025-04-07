@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import learn.app.validations.UniqueExerciseName;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -20,8 +20,7 @@ public class DayWorkout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dayWorkoutId;
     @NotNull (message = "Date cannot be empty")
-    @NotBlank (message = "Date cannot be empty")
-    @Past (message = "Date cannot be in the past")
+    @Past(message = "Date cannot be in the past")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull (message = "Workout name cannot be empty")
