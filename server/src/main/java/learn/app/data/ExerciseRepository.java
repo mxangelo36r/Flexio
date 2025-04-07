@@ -1,6 +1,7 @@
 package learn.app.data;
 
 import learn.app.models.workout.Exercise;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
 import java.util.*;

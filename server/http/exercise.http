@@ -82,7 +82,7 @@ Content-Type: application/json
     "reps": 20
 }
 
-### PUT: Update invalid exercise name
+### PUT: Update valid exercise name
 
 PUT {{url}}/update/1 HTTP/1.1
 Content-Type: application/json
