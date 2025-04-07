@@ -1,6 +1,6 @@
 package learn.app.models.workout;
 
-import learn.app.validations.UniqueExerciseName;
+//import learn.app.validations.UniqueExerciseName;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@UniqueExerciseName
-@Entity
+//@UniqueExerciseName
+//@Entity
 public class Exercise {
 
     @Id
@@ -33,8 +33,8 @@ public class Exercise {
     @Min(value = 1, message = "Reps has to be greater than 0")
     private int reps;
 
-    @ManyToMany(mappedBy = "exercises")
-    private Set<DayWorkout> dayWorkouts = new HashSet<>();
+//    @ManyToMany(mappedBy = "exercises")
+//    private Set<DayWorkout> dayWorkouts = new HashSet<>();
 
     public Exercise() {
         
@@ -92,13 +92,13 @@ public class Exercise {
 
     // Day Workouts
 
-    public Set<DayWorkout> getDayWorkouts() {
-        return dayWorkouts;
-    }
-
-    public void setDayWorkouts(Set<DayWorkout> dayWorkouts) {
-        this.dayWorkouts = dayWorkouts;
-    }
+//    public Set<DayWorkout> getDayWorkouts() {
+//        return dayWorkouts;
+//    }
+//
+//    public void setDayWorkouts(Set<DayWorkout> dayWorkouts) {
+//        this.dayWorkouts = dayWorkouts;
+//    }
 
     // Equals & Hashcode
 

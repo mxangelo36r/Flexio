@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+//@Entity
 public class DayWorkout {
 
     // Fields
@@ -22,13 +22,13 @@ public class DayWorkout {
     private String workoutName;
 
     // Join Table
-    @ManyToMany
-    @JoinTable(
-            name = "day_workout_exercise",
-            joinColumns = @JoinColumn(name = "day_workout_id"),
-            inverseJoinColumns = @JoinColumn(name = "exercise_id")
-    )
-    private Set<Exercise> exercises = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "day_workout_exercise",
+//            joinColumns = @JoinColumn(name = "day_workout_id"),
+//            inverseJoinColumns = @JoinColumn(name = "exercise_id")
+//    )
+//    private Set<Exercise> exercises = new HashSet<>();
 
     // Empty Constructor
     public DayWorkout() {
@@ -71,11 +71,11 @@ public class DayWorkout {
 
     // Exercises
 
-    public Set<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(Set<Exercise> exercises) {
-        this.exercises = exercises;
-    }
+//    public Set<Exercise> getExercises() {
+//        return exercises;
+//    }
+//
+//    public void setExercises(Set<Exercise> exercises) {
+//        this.exercises = exercises;
+//    }
 }
