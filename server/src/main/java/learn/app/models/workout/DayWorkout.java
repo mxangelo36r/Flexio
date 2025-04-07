@@ -1,5 +1,6 @@
 package learn.app.models.workout;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import learn.app.validations.UniqueExerciseName;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class DayWorkout {
     @NotNull (message = "Date cannot be empty")
     @NotBlank (message = "Date cannot be empty")
     @Past (message = "Date cannot be in the past")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @NotNull (message = "Workout name cannot be empty")
     @NotBlank (message = "Workout name cannot be empty")

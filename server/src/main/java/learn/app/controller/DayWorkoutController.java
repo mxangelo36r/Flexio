@@ -38,7 +38,7 @@ public class DayWorkoutController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addWorkout(@Valid @RequestBody DayWorkout workout) {
+    public ResponseEntity<Object> addWorkout(@RequestBody DayWorkout workout) {
         DayWorkout result = service.addWorkout(workout);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
