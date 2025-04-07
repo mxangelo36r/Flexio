@@ -2,6 +2,7 @@ package learn.app.controller;
 
 import learn.app.domain.DayWorkoutService;
 import learn.app.models.workout.DayWorkout;
+import learn.app.models.workout.Exercise;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -43,9 +44,9 @@ public class DayWorkoutController {
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
-    @PutMapping("update/{id}")
-    public ResponseEntity<Void> updateWorkout(@PathVariable int workoutId, @Valid @RequestBody DayWorkout workout) {
-        if (workoutId != workout.getDayWorkoutId()) {
+    @PutMapping("update/{dayWorkoutId}")
+    public ResponseEntity<Void> updateWorkout(@PathVariable int dayWorkoutId, @Valid @RequestBody DayWorkout workout) {
+        if (dayWorkoutId != workout.getDayWorkoutId()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         boolean result = service.updateWorkout(workout);
