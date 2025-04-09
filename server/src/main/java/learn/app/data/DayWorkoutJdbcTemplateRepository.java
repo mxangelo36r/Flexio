@@ -10,10 +10,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,14 +40,36 @@ public class DayWorkoutJdbcTemplateRepository implements DayWorkoutRepository {
 
     @Override
     public DayWorkout findWorkoutById(int id) {
-        final String sql = "SELECT day_workout_id, day, name FROM day_workout " +
-                "WHERE day_workout_id = ?;";
+        final String sql = "SELECT dw.day_workout_id, dw.`day`, dw.`name`, " +
+                "e.exercise_id, e.name_exercise, e.weight, e.sets, e.reps " +
+                "FROM day_workout dw " +
+                "LEFT JOIN day_workout_exercise dwe ON dw.day_workout_id = dwe.day_workout_id " +
+                "LEFT JOIN exercise e ON e.exercise_id = dwe.exercise_id " +
+                "WHERE dw.day_workout_id = ?;"; // Use a parameter placeholder
 
-        try {
-            return jdbcTemplate.queryForObject(sql, new DayWorkoutMapper(), id);
-        } catch (EmptyResultDataAccessException ex) {
-            return null;
+        DayWorkout result = null;
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql, id); // Use queryForList
+
+        if (!rows.isEmpty()) {
+            result = new DayWorkout();
+            result.setDayWorkoutId((int) rows.get(0).get("day_workout_id")); // Set ID from the first row
+            result.setDate(((Date) rows.get(0).get("day")).toLocalDate());
+            result.setWorkoutName((String) rows.get(0).get("name"));
+
+            for (Map<String, Object> row : rows) {
+                if (row.get("exercise_id") != null) {
+                    Exercise exercise = new Exercise();
+                    exercise.setExerciseId((int) row.get("exercise_id"));
+                    exercise.setExerciseName((String) row.get("name"));
+                    exercise.setWeight((double) row.get("weight"));
+                    exercise.setSets((int) row.get("sets"));
+                    exercise.setReps((int) row.get("reps"));
+                    result.getExercises().add(exercise);
+                }
+            }
         }
+
+        return result; // Return the DayWorkout object (or null if not found)
     }
 
     @Override
