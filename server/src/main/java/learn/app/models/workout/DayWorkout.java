@@ -26,7 +26,8 @@ public class DayWorkout {
     @NotBlank (message = "Workout name cannot be empty")
     private String workoutName;
 
-     // Join Table
+    // Join Table
+    // Need to get the exercises for that given day to be displayed onto the GET API call
     @ManyToMany
     @JoinTable(
             name = "day_workout_exercise",
@@ -49,7 +50,6 @@ public class DayWorkout {
     }
 
     // Getters & Setters
-
     public int getDayWorkoutId() {
         return dayWorkoutId;
     }
@@ -75,7 +75,6 @@ public class DayWorkout {
     }
 
     // Exercises
-
     public Set<Exercise> getExercises() {
         return exercises;
     }

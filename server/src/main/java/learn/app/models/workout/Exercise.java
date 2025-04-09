@@ -96,11 +96,6 @@ public class Exercise {
         this.dayWorkouts = dayWorkouts;
     }
 
-    // Equals & Hashcode
-
-    // Probably needs editing:
-    // Do we want to compare using other fields?
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

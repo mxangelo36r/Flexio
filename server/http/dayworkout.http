@@ -58,3 +58,7 @@ Content-Type: application/json
     "date": "2024-09-10",
     "workoutName": "Abs"
 }
+
+###
+
+DELETE {{url}}/delete/1 HTTP/1.1
