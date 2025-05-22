@@ -26,7 +26,7 @@ public class UserGoalJdbcTemplateRepository implements UserGoalRepository {
                 "WHERE user_id = ?;";
 
         try {
-            return jdbcTemplate.query(sql, new UserGoalMapper, id);
+            return (UserGoal) jdbcTemplate.query(sql, new UserGoalMapper(), id);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
