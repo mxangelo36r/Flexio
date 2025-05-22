@@ -23,3 +23,9 @@ ON e.exercise_id = dwe.exercise_id
 INNER JOIN day_workout dw
 ON dw.day_workout_id = dwe.day_workout_id
 WHERE dw.`day` = '2024-09-09';
+
+-- Finding UserGoals
+
+SELECT user_goal_id, user_id, goal_type, target_weight, weekly_visits, start_date, end_date 
+FROM user_goals
+WHERE user_id = 1;
