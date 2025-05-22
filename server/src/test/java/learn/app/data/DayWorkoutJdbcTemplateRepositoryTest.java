@@ -35,7 +35,7 @@ class DayWorkoutJdbcTemplateRepositoryTest {
     void findAllWorkouts() {
         List<DayWorkout> workouts = repository.findAllWorkouts();
         assertNotNull(workouts);
-        assertEquals(5, workouts.size());
+        assertEquals(2, workouts.size());
     }
 
     // (1, '2025-04-01', 'Upper Body'),

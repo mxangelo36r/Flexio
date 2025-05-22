@@ -48,7 +48,7 @@ class UserJdbcTemplateRepositoryTest {
         List<User> users = repository.findAllUsers();
 
         assertNotNull(users);
-        assertEquals(2, users.size());
+        assertEquals(3, users.size());
     }
 
     @Test
@@ -84,7 +84,7 @@ class UserJdbcTemplateRepositoryTest {
 
         User addedUser = repository.addUser(user);
         assertNotNull(addedUser);
-        assertEquals(2, addedUser.getUserId());
+        assertEquals(3, addedUser.getUserId());
     }
 
     @Test

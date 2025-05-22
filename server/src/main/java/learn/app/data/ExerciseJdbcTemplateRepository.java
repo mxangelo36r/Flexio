@@ -87,8 +87,8 @@ public class ExerciseJdbcTemplateRepository implements ExerciseRepository {
 
     @Override
     public boolean deleteExercise(int id) {
-        String deleteDailyGoalsSql = "DELETE FROM daily_goals WHERE exercise_id = ?;";
-        jdbcTemplate.update(deleteDailyGoalsSql, id);
+//        String deleteDailyGoalsSql = "DELETE FROM daily_goals WHERE exercise_id = ?;";
+//        jdbcTemplate.update(deleteDailyGoalsSql, id);
 
         String deleteDayWorkoutExerciseSql = "DELETE FROM day_workout_exercise WHERE exercise_id = ?;";
         jdbcTemplate.update(deleteDayWorkoutExerciseSql, id);

@@ -94,7 +94,6 @@ CREATE TABLE daily_goals (
     user_id INT,                                  -- ID of the user
     day_workout_id INT,                           -- ID of the day workout
     exercise_id INT,                              -- ID of the exercise
-    workout_date DATE,                            -- Date of the workout
     completed BOOLEAN,                            -- Status of goal completion
     UNIQUE KEY unique_user_exercise (user_id, exercise_id), -- Ensures a user has only one entry per exercise
     FOREIGN KEY (exercise_id, day_workout_id) REFERENCES day_workout_exercise(exercise_id, day_workout_id)
@@ -243,14 +242,14 @@ VALUES
     (1, 'Build Muscle', 65.00, 4, '2024-09-01', '2025-03-01');
     
 
-INSERT INTO daily_goals (user_id, workout_date, day_workout_id, exercise_id, completed)
+INSERT INTO daily_goals (user_id, day_workout_id, exercise_id, completed)
 VALUES
-    (1, '2024-09-09', 1, 1, TRUE),
-    (1, '2024-09-09', 1, 2, TRUE),
-    (1, '2024-09-09', 1, 3, TRUE),
-    (1, '2024-09-10', 2, 5, TRUE),   -- Pull-Up
-    (1, '2024-09-10', 2, 6, TRUE),   -- Barbell Row
-    (1, '2024-09-10', 2, 7, TRUE);   -- Lat Pulldown
+    (1, 1, 1, TRUE),
+    (1, 1, 2, TRUE),
+    (1, 1, 3, TRUE),
+    (1, 2, 5, TRUE),   -- Pull-Up
+    (1, 2, 6, TRUE),   -- Barbell Row
+    (1, 2, 7, TRUE);   -- Lat Pulldown
 
 INSERT INTO weekly_goals (user_id, week_start, week_end, gym_visits, all_workouts_completed)
 VALUES

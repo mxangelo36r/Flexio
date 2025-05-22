@@ -112,8 +112,7 @@ BEGIN
 	INSERT INTO day_workout (day_workout_id, `day`, `name`)
 	VALUES
 		(1, '2025-04-01', 'Upper Body'),
-		(2, '2025-04-02', 'Lower Body'),
-		(3, '2025-04-03', 'Legs');
+		(2, '2025-04-02', 'Lower Body');
         
 	INSERT INTO day_workout_exercise (exercise_id, day_workout_id)
 	VALUES
