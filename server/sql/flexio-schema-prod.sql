@@ -171,7 +171,7 @@ VALUES
     (4, 'Lateral Raise', 10, 4, 15),
 
     -- Pull - Back
-    (5, 'Pull-Up', NULL, 4, 8),
+    (5, 'Pull-Up', 50, 4, 8),
     (6, 'Barbell Row', 50, 4, 10),
     (7, 'Lat Pulldown', 45, 3, 10),
     (8, 'Face Pull', 20, 3, 12),
