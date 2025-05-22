@@ -1,17 +1,32 @@
 package learn.app.models.goals;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import learn.app.models.user.User;
 import org.apache.tomcat.jni.Local;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class UserGoal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userGoalId;
     private int userId;
+    @NotNull(message = "You must select a valid goal type")
     private GoalType goalType;
+    @Min(value = 0, message = "Weekly visits cannot be negative")
+    @NotNull(message = "Weekly visits cannot be empty")
     private int weeklyVisits;
+    @NotNull(message = "Start date cannot be empty")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @NotNull(message = "End date cannot be empty")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     public UserGoal(int userGoalId, int userId, GoalType goalType, int weeklyVisits, LocalDate startDate, LocalDate endDate) {
