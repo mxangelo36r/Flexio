@@ -19,6 +19,7 @@ public class UserGoal {
     private int userId;
     @NotNull(message = "You must select a valid goal type")
     private GoalType goalType;
+    private double targetWeight;
     @Min(value = 0, message = "Weekly visits cannot be negative")
     @NotNull(message = "Weekly visits cannot be empty")
     private int weeklyVisits;
@@ -29,13 +30,18 @@ public class UserGoal {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    public UserGoal(int userGoalId, int userId, GoalType goalType, int weeklyVisits, LocalDate startDate, LocalDate endDate) {
+    public UserGoal(int userGoalId, int userId, GoalType goalType, double targetWeight, int weeklyVisits, LocalDate startDate, LocalDate endDate) {
         this.userGoalId = userGoalId;
         this.userId = userId;
         this.goalType = goalType;
+        this.targetWeight = targetWeight;
         this.weeklyVisits = weeklyVisits;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public UserGoal() {
+
     }
 
     public int getUserGoalId() {
@@ -60,6 +66,14 @@ public class UserGoal {
 
     public void setGoalType(GoalType goalType) {
         this.goalType = goalType;
+    }
+
+    public double getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(double targetWeight) {
+        this.targetWeight = targetWeight;
     }
 
     public int getWeeklyVisits() {
