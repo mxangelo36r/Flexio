@@ -20,13 +20,13 @@ public class UserGoalJdbcTemplateRepository implements UserGoalRepository {
     }
 
     @Override
-    public UserGoal findById(int id) {
+    public UserGoal findUserGoalById(int id) {
         final String sql = "SELECT user_goal_id, user_id, goal_type, target_weight, weekly_visits, start_date, end_date " +
                 "FROM user_goals " +
                 "WHERE user_id = ?;";
 
         try {
-            return (UserGoal) jdbcTemplate.query(sql, new UserGoalMapper(), id);
+            return jdbcTemplate.queryForObject(sql, new UserGoalMapper(), id);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }

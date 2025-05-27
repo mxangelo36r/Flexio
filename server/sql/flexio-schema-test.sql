@@ -87,6 +87,8 @@ BEGIN
     ALTER TABLE day_workout AUTO_INCREMENT = 1;
     DELETE FROM day_workout_exercise;
     ALTER TABLE day_workout_exercise AUTO_INCREMENT = 1;
+    DELETE FROM user_goals;
+    ALTER TABLE user_goals AUTO_INCREMENT = 1;
 --     DELETE FROM daily_goals;
 --     ALTER TABLE daily_goals AUTO_INCREMENT = 1;
 --     DELETE FROM day_workout_weekly_program;
@@ -119,6 +121,10 @@ BEGIN
 		(1, 1), 
 		(2, 1),
 		(3, 2);
+        
+    INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
+	VALUES
+		(1, 'GET_STRONGER', 70.00, 5, '2025-05-01', '2025-12-01');    
         
 END //
 delimiter ;
