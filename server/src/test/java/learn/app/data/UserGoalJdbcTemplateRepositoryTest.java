@@ -2,6 +2,7 @@ package learn.app.data;
 
 import learn.app.models.goals.UserGoal;
 import learn.app.models.goals.GoalType;
+import org.apache.tomcat.jni.Local;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,7 @@ class UserGoalJdbcTemplateRepositoryTest {
         UserGoal userGoal = repository.findUserGoalById(1);
         assertEquals(1, userGoal.getUserId());
         assertEquals(GoalType.GET_STRONGER, userGoal.getGoalType());
+        assertEquals(5, userGoal.getWeeklyVisits());
         assertEquals(70.00, userGoal.getTargetWeight());
         assertEquals(LocalDate.of(2025, 5, 1), userGoal.getStartDate());
         assertEquals(LocalDate.of(2025, 12, 1), userGoal.getEndDate());
@@ -47,10 +49,33 @@ class UserGoalJdbcTemplateRepositoryTest {
     }
 
     @Test
-    void addUserGoal() {
+    void shouldAddUserGoal() {
+        UserGoal userGoal = anotherUserGoal();
+        UserGoal addedUserGoal = repository.addUserGoal(userGoal);
+        assertEquals(2, addedUserGoal.getUserGoalId());
     }
 
     @Test
     void updateUserGoal() {
+        UserGoal userGoal = new UserGoal();
+        userGoal.setUserGoalId(1);
+        userGoal.setUserId(1);
+        userGoal.setGoalType(GoalType.WEIGHT_LOSS);
+        userGoal.setWeeklyVisits(7);
+        userGoal.setTargetWeight(60.00);
+        userGoal.setStartDate(LocalDate.of(2025, 1, 1));
+        userGoal.setEndDate(LocalDate.of(2025, 12, 1));
+
+        assertTrue(repository.updateUserGoal(userGoal));
+        assertEquals(7, repository.findUserGoalById(1).getWeeklyVisits());
+    }
+
+    // Helper Methods
+    public UserGoal anotherUserGoal() {
+        UserGoal anotherUserGoal = new UserGoal(1, 1, GoalType.MAINTAIN_WEIGHT,
+                70.00, 3, LocalDate.of(2025, 6, 1),
+                LocalDate.of(2026, 2, 1));
+
+        return anotherUserGoal;
     }
 }

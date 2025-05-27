@@ -42,7 +42,7 @@ public class UserGoalJdbcTemplateRepository implements UserGoalRepository {
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, userGoal.getUserId());
-            ps.setObject(2, userGoal.getGoalType());
+            ps.setString(2, userGoal.getGoalType().name());
             ps.setDouble(3, userGoal.getTargetWeight());
             ps.setInt(4, userGoal.getWeeklyVisits());
             ps.setDate(5, java.sql.Date.valueOf(userGoal.getStartDate()));
@@ -65,14 +65,18 @@ public class UserGoalJdbcTemplateRepository implements UserGoalRepository {
                 "target_weight = ?, " +
                 "weekly_visits = ?, " +
                 "start_date = ?, " +
-                "end_date = ?,;";
+                "end_date = ? " +
+                "WHERE user_goal_id = ? " +
+                "AND user_id = ?;";
 
         int rowsUpdated = jdbcTemplate.update(sql,
-                userGoal.getGoalType(),
+                userGoal.getGoalType().name(),
                 userGoal.getTargetWeight(),
                 userGoal.getWeeklyVisits(),
-                userGoal.getStartDate(),
-                userGoal.getEndDate());
+                java.sql.Date.valueOf(userGoal.getStartDate()),
+                java.sql.Date.valueOf(userGoal.getEndDate()),
+                userGoal.getUserGoalId(),
+                userGoal.getUserId());
 
         return rowsUpdated > 0;
     }

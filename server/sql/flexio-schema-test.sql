@@ -101,9 +101,6 @@ BEGIN
 		('testUsername', 'testEmail@gmail.com', 'testPassword', 50, 6, 4),
         ('testUsernameTwo', 'testEmailTwo@gmail.com', 'testPasswordTwo', 67, 5, 11);
         
-	INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
-	VALUES
-		(2, 'GET_STRONGER', 75.00, 6, '2025-03-01', '2025-09-01');
         
 	INSERT INTO exercise (exercise_id, name_exercise, weight, sets, reps)
     VALUES
@@ -122,9 +119,9 @@ BEGIN
 		(2, 1),
 		(3, 2);
         
-    INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
+    INSERT INTO user_goals (user_goal_id, user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
 	VALUES
-		(1, 'GET_STRONGER', 70.00, 5, '2025-05-01', '2025-12-01');    
+		(1, 1, 'GET_STRONGER', 70.00, 5, '2025-05-01', '2025-12-01');    
         
 END //
 delimiter ;
