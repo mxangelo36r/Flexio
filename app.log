@@ -1,0 +1,32 @@
+2025-05-30 15:14:36.370  INFO 39794 --- [restartedMain] learn.App                                : Starting App on Miguels-MacBook-Pro.local with PID 39794 (/Users/miguelrosales/Desktop/Flexio/server/target/classes started by miguelrosales in /Users/miguelrosales/Desktop/Flexio)
+2025-05-30 15:14:36.374  INFO 39794 --- [restartedMain] learn.App                                : No active profile set, falling back to default profiles: default
+2025-05-30 15:14:36.438  INFO 39794 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-30 15:14:36.438  INFO 39794 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-30 15:14:36.966  INFO 39794 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2025-05-30 15:14:36.984  INFO 39794 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13ms. Found 0 JPA repository interfaces.
+2025-05-30 15:14:37.352  INFO 39794 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-30 15:14:37.357  INFO 39794 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-30 15:14:37.357  INFO 39794 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2025-05-30 15:14:37.406  INFO 39794 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-30 15:14:37.407  INFO 39794 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 968 ms
+2025-05-30 15:14:37.506  INFO 39794 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2025-05-30 15:14:37.515  INFO 39794 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-30 15:14:38.086  INFO 39794 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-30 15:14:38.151  INFO 39794 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-30 15:14:38.250  INFO 39794 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.20.Final
+2025-05-30 15:14:38.398  INFO 39794 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2025-05-30 15:14:38.443  WARN 39794 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-30 15:14:38.518  INFO 39794 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-30 15:14:38.719  INFO 39794 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-05-30 15:14:38.753  INFO 39794 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-30 15:14:38.755  INFO 39794 --- [restartedMain] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2025-05-30 15:14:38.756  INFO 39794 --- [restartedMain] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2025-05-30 15:14:38.765  INFO 39794 --- [restartedMain] learn.App                                : Started App in 2.765 seconds (JVM running for 3.048)
+2025-05-30 15:14:38.918  INFO 39794 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-30 15:14:38.922  INFO 39794 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-30 15:14:57.605  INFO 39794 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-30 15:14:57.606  INFO 39794 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-30 15:14:57.616  INFO 39794 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2025-05-30 15:15:00.510  WARN 39794 --- [http-nio-8080-exec-3] learn.app.controller.UserGoalController  : Path variable userGoalId does not match request body: 0
+2025-05-30 15:16:37.409  INFO 39794 --- [http-nio-8080-exec-4] learn.app.controller.UserGoalController  : Successfully updated user goal for userGoalId: 1
+2025-05-30 15:17:03.266  INFO 39794 --- [http-nio-8080-exec-6] learn.app.controller.UserGoalController  : Successfully updated user goal for userGoalId: 1

@@ -48,7 +48,7 @@ public class ExerciseController {
     }
 
     @PutMapping("/update/{exerciseId}")
-    public ResponseEntity<Void> updateExcercise(@PathVariable int exerciseId, @Valid @RequestBody Exercise exercise) {
+    public ResponseEntity<Void> updateExercise(@PathVariable int exerciseId, @Valid @RequestBody Exercise exercise) {
         if (exerciseId != exercise.getExerciseId()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
