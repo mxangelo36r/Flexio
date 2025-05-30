@@ -32,7 +32,7 @@ WHERE user_id = 1;
 
 -- Updating User Goals
 
-UPDATE user_goals SET goal_type = 'WEIGHT_LOSS', target_weight = 60.00, weekly_visits = 7, start_date = '2025-01-01', end_date = '2025-12-01' WHERE user_goal_id = 1;
+-- UPDATE user_goals SET goal_type = 'WEIGHT_LOSS', target_weight = 60.00, weekly_visits = 7, start_date = '2025-01-01', end_date = '2025-12-01' WHERE user_goal_id = 1;
 
 SELECT * FROM user_goals;
 SELECT * FROM users;

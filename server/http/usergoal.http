@@ -1,0 +1,5 @@
+@url = http://localhost:8080/flexio/user-goal
+
+### Find User Goal by ID
+
+GET {{url}}/1 HTTP/1.1

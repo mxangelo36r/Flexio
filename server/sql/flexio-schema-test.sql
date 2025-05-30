@@ -24,8 +24,7 @@ CREATE TABLE user_goals (
     start_date DATE,
     end_date DATE,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
+);  
 CREATE TABLE exercise (
 
 	exercise_id INT PRIMARY KEY AUTO_INCREMENT,

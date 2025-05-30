@@ -80,7 +80,7 @@ CREATE TABLE user_goals (
 
     user_goal_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
-    goal_type ENUM('Weight Loss', 'Build Muscle', 'Get Stronger', 'Maintain Weight') NOT NULL,
+    goal_type ENUM('WEIGHT_LOSS', 'BUILD_MUSCLE', 'GET_STRONGER', 'MAINTAIN_WEIGHT') NOT NULL,
     target_weight DECIMAL(10, 2),  -- Target weight for goals related to weight
     weekly_visits INT,             -- Number of visits per week
     start_date DATE,
@@ -239,8 +239,7 @@ VALUES
     
 INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
 VALUES
-    (1, 'Build Muscle', 65.00, 4, '2024-09-01', '2025-03-01');
-    
+    (1, 'BUILD_MUSCLE', 65.00, 4, '2024-09-01', '2025-03-01');
 
 INSERT INTO daily_goals (user_id, day_workout_id, exercise_id, completed)
 VALUES
