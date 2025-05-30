@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,12 @@ public class UserGoalController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userGoal, HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Object> addUserGoal(@Valid @RequestBody UserGoal userGoal) {
+        UserGoal result = service.addUserGoal(userGoal);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

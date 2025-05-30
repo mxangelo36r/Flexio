@@ -237,9 +237,9 @@ VALUES
     (23, 6), -- Seated Leg Curl
     (24, 6); -- Good Mornings
     
-INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
-VALUES
-    (1, 'BUILD_MUSCLE', 65.00, 4, '2024-09-01', '2025-03-01');
+-- INSERT INTO user_goals (user_id, goal_type, target_weight, weekly_visits, start_date, end_date)
+-- VALUES
+--     (1, 'BUILD_MUSCLE', 65.00, 4, '2024-09-01', '2025-03-01');
 
 INSERT INTO daily_goals (user_id, day_workout_id, exercise_id, completed)
 VALUES
